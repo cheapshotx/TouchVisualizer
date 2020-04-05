@@ -165,8 +165,6 @@ extension Visualizer {
                 }
                 
                 log(touch)
-            case .stationary:
-                log(touch)
             case .ended, .cancelled:
                 if let view = findTouchView(touch) {
                     UIView.animate(withDuration: 0.2, delay: 0.0, options: .allowUserInteraction, animations: { () -> Void  in
@@ -178,6 +176,8 @@ extension Visualizer {
                     })
                 }
                 
+                log(touch)
+	    default:
                 log(touch)
             }
         }
@@ -212,6 +212,7 @@ extension Visualizer {
             case .stationary: phase = "S"
             case .ended: phase = "E"
             case .cancelled: phase = "C"
+	    default: phase = "DEFAULT"
             }
             
             let x = String(format: "%.02f", view.center.x)
